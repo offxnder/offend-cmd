@@ -69,15 +69,6 @@ function offend:fire(cmd)
 
     if args[1] == "fling" then
         pcall(function()
-            getgenv().flinging = true
-
-            while getgenv().flinging do
-                plr.Character.Head.CanCollide = false
-                plr.Character.Torso.CanCollide = false
-                plr.Character["Left Leg"].CanCollide = false
-                plr.Character["Right Leg"].CanCollide = false
-                task.wait()
-            end
             local BT = Instance.new("BodyThrust", plr.Character:FindFirstChild("HumanoidRootPart"))
             BT.Force = Vector3.new(tonumber(args[2]),0,tonumber(args[2]))
             BT.Location = plr.Character:FindFirstChild("HumanoidRootPart").Position
@@ -86,8 +77,6 @@ function offend:fire(cmd)
 
     if args[1] == "unfling" then
         pcall(function()
-            getgenv().flinging = false
-
             plr.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("BodyThrust"):Destroy()
         end)
     end
