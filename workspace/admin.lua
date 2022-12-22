@@ -6,7 +6,6 @@ local players = game:GetService("Players")
 local plr = players.LocalPlayer
 
 getgenv().infjump = false
-getgenv().flinging = false
 
 function offend:fire(cmd)
     local args = {}
@@ -52,7 +51,7 @@ function offend:fire(cmd)
                         Action(plr.Character.Humanoid, function(self)
                             if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
                                 Action(self.Parent.HumanoidRootPart, function(self)
-                                    self.Velocity = Vector3.new(0, 150, 0);
+                                    self.Velocity = Vector3.new(0, 50, 0);
                                 end)
                             end
                         end)
@@ -71,6 +70,25 @@ function offend:fire(cmd)
     if args[1] == "fling" then
         pcall(function()
             getgenv().flinging = true
+
+            while getgenv().flinging do
+                plr.Character.Head.CanCollide = false
+                plr.Character.Torso.CanCollide = false
+                plr.Character["Left Leg"].CanCollide = false
+                plr.Character["Right Leg"].CanCollide = false
+                task.wait()
+            end
+            local BT = Instance.new("BodyThrust", plr.Character:FindFirstChild("HumanoidRootPart"))
+            BT.Force = Vector3.new(tonumber(args[2]),0,tonumber(args[2]))
+            BT.Location = plr.Character:FindFirstChild("HumanoidRootPart").Position
+        end)
+    end
+
+    if args[1] == "unfling" then
+        pcall(function()
+            getgenv().flinging = false
+
+            plr.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("BodyThrust"):Destroy()
         end)
     end
 end
