@@ -25,10 +25,10 @@ function cmd()
 
     pcall(function()
         if tostring(firecmd) then
-            print(firecmd.."\n")
+            consoleprint(firecmd.."\n", "green")
         else
             for i, sdf in pairs(firecmd) do
-                print(sdf.."\n")
+                consoleprint(sdf.."\n", "green")
             end
         end
     end)
