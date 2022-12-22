@@ -5,16 +5,16 @@ local offend = {}
 local players = game:GetService("Players")
 local plr = players.LocalPlayer
 
-local cmds = {
-    "walkspeed (number) - Changes your Walk Speed.",
-    "jumppower (number) - Changes your Jump Power.",
-    "tpto (player) - Teleports you to the defined Player.",
-    "infjump - Allows you to jump infinitely.",
-    "uninfjump - Stops infjump.",
-    "fling - Spins your character.",
-    "unfling - Stops fling.",
-    "reset - Kills your character.",
-}
+local cmds = [[
+    walkspeed (number) - Changes your Walk Speed.
+    jumppower (number) - Changes your Jump Power.
+    tpto (player) - Teleports you to the defined Player.
+    infjump - Allows you to jump infinitely.
+    uninfjump - Stops infjump.
+    fling - Spins your character.
+    unfling - Stops fling.
+    reset - Kills your character.
+]]
 
 getgenv().infjump = false
 
