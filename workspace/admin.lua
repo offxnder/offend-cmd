@@ -24,6 +24,7 @@ function offend:fire(cmd)
     end
 
     if args[1] == "tpto" then
+        print("crack")
         pcall(function()
             local target
             for i, player in pairs(players:GetPlayers()) do
@@ -32,7 +33,9 @@ function offend:fire(cmd)
                     target = player
                 end
             end
-            plr.Character:FindFirstChild("HumanoidRootPart").CFrame = target.Character:FindFirstChild("HumanoidRootPart")
+
+            print(target)
+            plr.Character:FindFirstChild("HumanoidRootPart").CFrame = target.Character:FindFirstChild("HumanoidRootPart").CFrame
         end)
     end
 end
