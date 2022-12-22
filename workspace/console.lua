@@ -2,7 +2,7 @@
 consolecreate()
 consolesettitle("Offend Cmd - Console")
 
-local admin_script = loadstring(readfile("offend_cmd/admin.lua"))
+local admin_script = loadstring(readfile("offend_cmd/admin.lua"))()
 
 consoleprint([[
 
