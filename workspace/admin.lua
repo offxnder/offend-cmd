@@ -14,6 +14,10 @@ local cmds = [[
     fling - Spins your character.
     unfling - Stops fling.
     reset - Kills your character.
+    antikick - Prevents the game from kicking you on the client.
+    xray - Makes all parts transparent.
+    unxray - Stops xray.
+    insult (player) - Insults the defined player in chat.
 ]]
 
 getgenv().infjump = false
@@ -116,6 +120,68 @@ function offend:fire(cmd)
         end)
 
         return "Killed character."
+    end
+
+    if args[1] == "antikick" then
+        pcall(function()
+            local mt = getrawmetatable(game)
+            local old = mt.__namecall
+            local protect = newcclosure or protect_function
+
+            if not protect then
+                protect = function(f) return f end
+            end
+
+            setreadonly(mt, false)
+            mt.__namecall = protect(function(self, ...)
+                local method = getnamecallmethod()
+                if method == "Kick" then
+                    wait(9e9)
+                    return
+                end
+                return old(self, ...)
+            end)
+            hookfunction(plr.Kick,protect(function() wait(9e9) end))
+        end)    
+
+        return "Anti kick enabled."
+    end
+
+    if args[1] == "xray" then
+        pcall(function()
+            for i, v in pairs(workspace:GetDescendants()) do
+                pcall(function()
+                    v.Transparency = 0.5
+                end)
+            end
+        end)
+
+        return "Xray enabled."
+    end
+
+    if args[1] == "unxray" then
+        pcall(function()
+            for i, v in pairs(workspace:GetDescendants()) do
+                pcall(function()
+                    v.Transparency = 0
+                end)
+            end
+        end)
+
+        return "Stopped xray."
+    end
+
+    if args[1] == "insult" then
+        local insults = {"You look like an egg, " .. tostring(args[2]), tostring(args[2]) .. "'s father left them.", tostring(args[2]) .. " stinks.", tostring(args[2]) .. " is the type of person to fall for a tech support scam."}
+
+		local args = {
+			[1] = insults[math.random(1, #insults)],
+			[2] = "All"
+		}
+
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+
+        return "Insulted player."
     end
 end
 
