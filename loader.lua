@@ -16,12 +16,12 @@ else
             warn("[Offend Cmd] - Console up to date!")
         else
             warn("[Offend Cmd] - New version detected. Downloading..")
-            appendfile("offend_cmd/admin.lua", adminRep)
+            writefile("offend_cmd/admin.lua", adminRep)
             warn("[Offend Cmd] - Successfully updated!")
         end
     else
         warn("[Offend Cmd] - New version detected. Downloading..")
-        appendfile("offend_cmd/console.lua", consoleRep)
+        writefile("offend_cmd/console.lua", consoleRep)
         warn("[Offend Cmd] - Successfully updated!")
     end
 end
