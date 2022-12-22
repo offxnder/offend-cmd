@@ -28,4 +28,4 @@ end
 
 warn("[Offend Cmd] - Loading script..")
 
-loadstring(readfile("offend_cmd/console.lua"))
+loadstring(readfile("offend_cmd/console.lua"))()
