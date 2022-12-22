@@ -10,24 +10,24 @@ function offend:fire(cmd)
     for arg in cmd:gmatch("%w+") do
         table.insert(args, arg:lower())
     end
-
-    if args[0] == "walkspeed" then
+    
+    if args[1] == "walkspeed" then
         pcall(function()
-            plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = tonumber(args[1])
+            plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = tonumber(args[2])
         end)
     end
 
-    if args[0] == "jumppower" then
+    if args[1] == "jumppower" then
         pcall(function()
-            plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = tonumber(args[1])
+            plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = tonumber(args[2])
         end)
     end
 
-    if args[0] == "tpto" then
+    if args[1] == "tpto" then
         pcall(function()
             local target
             for i, player in pairs(players:GetPlayers()) do
-                if player.Name:lower() == args[1] then
+                if player.Name:lower() == args[2] then
                     target = player
                 end
             end
