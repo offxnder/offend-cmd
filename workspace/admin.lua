@@ -5,6 +5,17 @@ local offend = {}
 local players = game:GetService("Players")
 local plr = players.LocalPlayer
 
+local cmds = {
+    "walkspeed (number) - Changes your Walk Speed.",
+    "jumppower (number) - Changes your Jump Power.",
+    "tpto (player) - Teleports you to the defined Player.",
+    "infjump - Allows you to jump infinitely.",
+    "uninfjump - Stops infjump.",
+    "fling - Spins your character.",
+    "unfling - Stops fling.",
+    "reset - Kills your character.",
+}
+
 getgenv().infjump = false
 
 function offend:fire(cmd)
@@ -13,16 +24,24 @@ function offend:fire(cmd)
         table.insert(args, arg:lower())
     end
 
+    if args[1] == "cmds" then
+        return cmds
+    end
+
     if args[1] == "walkspeed" then
         pcall(function()
             plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = tonumber(args[2])
         end)
+
+        return "Changed walk speed."
     end
 
     if args[1] == "jumppower" then
         pcall(function()
             plr.Character:FindFirstChildOfClass("Humanoid").JumpPower = tonumber(args[2])
         end)
+
+        return "Changed jump power."
     end
 
     if args[1] == "tpto" then
@@ -37,6 +56,8 @@ function offend:fire(cmd)
 
             plr.Character:FindFirstChild("HumanoidRootPart").CFrame = target.Character:FindFirstChild("HumanoidRootPart").CFrame
         end)
+
+        return "Teleported to player."
     end
 
     if args[1] == "infjump" then
@@ -59,12 +80,16 @@ function offend:fire(cmd)
                 end
             end)
         end)
+
+        return "Infinite jump enabled."
     end
 
     if args[1] == "uninfjump" then
         pcall(function()
             getgenv().infjump = false
         end)
+
+        return "Infinite jump stopped."
     end
 
     if args[1] == "fling" then
@@ -73,12 +98,24 @@ function offend:fire(cmd)
             BT.Force = Vector3.new(tonumber(args[2]),0,tonumber(args[2]))
             BT.Location = plr.Character:FindFirstChild("HumanoidRootPart").Position
         end)
+
+        return "Fling enabled."
     end
 
     if args[1] == "unfling" then
         pcall(function()
             plr.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("BodyThrust"):Destroy()
         end)
+
+        return "Fling stopped."
+    end
+
+    if args[1] == "reset" then
+        pcall(function()
+            plr.Character:FindFirstChildOfClass("Humanoid").Health = -9999
+        end)
+
+        return "Killed character."
     end
 end
 
