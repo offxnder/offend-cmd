@@ -24,13 +24,7 @@ function cmd()
     local firecmd = admin_script:fire(requested_cmd)
 
     pcall(function()
-        if tostring(firecmd) then
-            consoleprint(firecmd.."\n", "green")
-        else
-            for i, sdf in pairs(firecmd) do
-                consoleprint(sdf.."\n", "green")
-            end
-        end
+        consoleprint(firecmd.."\n", "green")
     end)
 
     cmd()
