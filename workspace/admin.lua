@@ -14,6 +14,7 @@ local cmds = [[
     fling - Spins your character.
     unfling - Stops fling.
     reset - Kills your character.
+    execute (code) - Execute lua code within the console. (MAKE SURE THERE ARE NO SPACES!)
 ]]
 
 getgenv().infjump = false
@@ -116,6 +117,14 @@ function offend:fire(cmd)
         end)
 
         return "Killed character."
+    end
+
+    if args[1] == "execute" then
+        pcall(function()
+            loadstring(args[2])
+        end)
+
+        return "Executed code."
     end
 end
 
