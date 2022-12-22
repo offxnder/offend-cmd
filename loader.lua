@@ -1,7 +1,7 @@
 -- Loader Script - Offend Cmd
 
-local consoleRep = game:HttpGet("githublink")
-local adminRep = game:HttpGet("githublink")
+local consoleRep = game:HttpGet("https://raw.githubusercontent.com/offxnder/offend-cmd/main/workspace/console.lua")
+local adminRep = game:HttpGet("https://raw.githubusercontent.com/offxnder/offend-cmd/main/workspace/admin.lua")
 
 if not isfolder("offend_cmd") then
     makefolder("offend_cmd")
